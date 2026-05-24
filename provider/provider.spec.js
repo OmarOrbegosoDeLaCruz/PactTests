@@ -2,7 +2,7 @@ const { Verifier } = require("@pact-foundation/pact");
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
-const { server } = require("./provider.js");
+const { resetDataStore, server } = require("./provider.js");
 const { providerName, pactFile } = require("../pact.js");
 let port;
 let opts;
@@ -22,7 +22,10 @@ describe("Pact Verification", () => {
       // we are starting it locally and defined the port above
       providerBaseUrl: `http://${hostname}:${port}`,
       // You can set the log level here, useful for debugging
-      logLevel: "info"
+      logLevel: "info",
+      stateHandlers: {
+        "there are orders": () => resetDataStore(),
+      },
     };
 
     // The PACT_URL can either be a path to a local file

@@ -24,7 +24,7 @@
                 {
                   "name": "burger",
                   "quantity": 2,
-                  "value": 100
+                  "value": 20
                 }
               ]
             }
@@ -62,12 +62,186 @@
         "status": 200
       },
       "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to create an order",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "there are orders"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "items": [
+              {
+                "name": "fries",
+                "quantity": 1,
+                "value": 5
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.items": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/orders"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "id": 2,
+            "items": [
+              {
+                "name": "fries",
+                "quantity": 1,
+                "value": 5
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.items": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          }
+        },
+        "status": 201
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to delete an order",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "there are orders"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/orders/1"
+      },
+      "response": {
+        "status": 204
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to update an order",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "there are orders"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "items": [
+              {
+                "name": "burger",
+                "quantity": 3,
+                "value": 20
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.items": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          }
+        },
+        "method": "PATCH",
+        "path": "/orders/1"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "id": 1,
+            "items": [
+              {
+                "name": "burger",
+                "quantity": 3,
+                "value": 20
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.items": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
     }
   ],
   "metadata": {
-    "pact-js": {
-      "version": "16.3.0"
-    },
     "pactRust": {
       "ffi": "0.5.3",
       "models": "1.3.9"
