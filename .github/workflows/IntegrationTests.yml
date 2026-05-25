@@ -1,14 +1,38 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: test
+name: IntegrationTests
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+    paths:
+      - "consumer/**"
+      - "provider/**"
+      - "pacts/**"
+      - "scripts/ci/test.sh"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/test.yml"
   pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+    branches:
+      - main
+    paths:
+      - "consumer/**"
+      - "provider/**"
+      - "pacts/**"
+      - "scripts/ci/test.sh"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/test.yml"
+  merge_group:
     branches:
       - main
 
