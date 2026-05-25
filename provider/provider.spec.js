@@ -119,6 +119,7 @@ describe("Pact Verification", () => {
       })
       .catch((e) => {
         console.error("Pact verification failed :(", e);
+        throw e;
       });
   });
 });
