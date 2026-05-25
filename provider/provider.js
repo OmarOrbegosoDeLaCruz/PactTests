@@ -71,7 +71,7 @@ server.delete("/orders/:id", (req, res) => {
   }
 
   dataStore.splice(orderIndex, 1);
-  return res.status(204).send();
+  return res.status(203).send();
 });
 
 module.exports = {
